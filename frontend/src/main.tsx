@@ -2,8 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { WithtSwr } from "./WithSwr.tsx";
-import { WithoutSwr } from "./WithoutSwr.tsx";
+import { WithSwr, CreateCompany, WithoutSwr } from "./pages";
 import "./index.css";
 import { Layout } from "./layout.tsx";
 
@@ -13,7 +12,8 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: "/sem-swr", element: <WithoutSwr /> },
-      { path: "/com-swr", element: <WithtSwr /> },
+      { path: "/com-swr", element: <WithSwr /> },
+      { path: "/criar-empresa", element: <CreateCompany /> },
     ],
   },
 ]);

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { axiosService } from "./infra";
+import { axiosService } from "../services/infra";
+import { Company } from "../components/Company";
 
 type Company = {
   id: string;
@@ -20,16 +21,17 @@ export const WithoutSwr = () => {
   useEffect(() => {
     getCompanyListFetcher("/companies");
   }, []);
-
   return (
-    <div>
-      <h2>Without Swr</h2>
+    <div className="flex h-full w-full justify-start flex-col overflow-auto max-h-96">
       {isLoading && <div>Carregando...</div>}
       {!isLoading && (
         <>
           {companyState?.map((company) => (
             <div key={company.id}>{company.name}</div>
           ))}
+          {companyState.length === 0 && (
+            <h5>Sem conteúdo</h5>
+          )}
         </>
       )}
     </div>
