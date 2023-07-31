@@ -1,12 +1,13 @@
 import useSWR from "swr";
-import { axiosService } from "./infra";
+import { axiosService } from "../services/infra";
+import { Company } from "../components/Company";
 
 type Company = {
   id: string;
   name: string;
 };
 
-export const WithtSwr = () => {
+export const WithSwr = () => {
   const getCompanyListFetcher = async (url: string) => {
     const res = await axiosService.get(url);
     return res.data;
@@ -26,12 +27,11 @@ export const WithtSwr = () => {
       {!isLoading && (
         <>
           {data?.map((company) => (
-            <div key={company.id}>{company.name}</div>
+            <Company key={company.id} name={company.name}/>
           ))}
-          <form>
-            <label htmlFor="name">Nome</label>
-            <input type="text" />
-          </form>
+          {data?.length === 0 && (
+            <h5>Sem conteúdo</h5>
+          )}
         </>
       )}
     </div>
