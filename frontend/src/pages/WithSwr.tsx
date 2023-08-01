@@ -22,15 +22,15 @@ export const WithSwr = () => {
   );
 
   return (
-    <div>
-      {isLoading && <div>Carregando...</div>}
+    <div className="flex h-full w-6/12 justify-start flex-col overflow-auto max-h-96 border-2 border-gray-400 bg-gray-500 py-4 px-4 rounded-2xl">
+      {isLoading && <div  className="text-gray-100">Carregando...</div>}
       {!isLoading && (
         <>
           {data?.map((company) => (
             <Company key={company.id} name={company.name}/>
           ))}
           {data?.length === 0 && (
-            <h5>Sem conteúdo</h5>
+            <h5 className="text-gray-100">Sem conteúdo</h5>
           )}
         </>
       )}
